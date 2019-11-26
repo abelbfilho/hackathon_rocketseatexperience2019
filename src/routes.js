@@ -5,7 +5,7 @@ import multerConfig from './config/multer';
 import UserController from './app/controllers/UserController';
 import SessionController from './app/controllers/SessionController';
 import FileController from './app/controllers/FileController';
-// import QuestionController from './app/controllers/MeetappController';
+import QuestionController from './app/controllers/QuestionController';
 import AnswerController from './app/controllers/AnswerController';
 
 import authMiddleware from './app/middlewares/auth';
@@ -22,10 +22,13 @@ routes.put('/users', UserController.update);
 
 routes.post('/files', upload.single('file'), FileController.store);
 
-routes.post('/answers', AnswerController.store);
+routes.get('/questions', QuestionController.index);
+
+routes.post('/answers/:question_id', AnswerController.store);
+routes.get('/answers/:user_id', AnswerController.store);
 // routes.put('/meetapps', MeetappController.update);
 // routes.get('/meetapps', MeetappController.index);
-// routes.get('/meetappsDate', MeetappController.indexDate);
+
 // routes.delete('/meetapps/:id', MeetappController.delete);
 
 // routes.post('/subscription', SubscriptionController.store);

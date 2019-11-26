@@ -19,4 +19,6 @@ yarn sequelize db:migrate
 #4. IMPORTING SEEDS TO DATABASE
 yarn sequelize db:seed:all
 
+>> Porta de Comunicação 8877
+
 

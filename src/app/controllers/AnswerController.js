@@ -1,31 +1,42 @@
 import * as Yup from 'yup';
-import Question from '../models/user';
+import Answer from '../models/answer';
+import User from '../models/user';
 
-class QuestionController {
+class AnswerController {
   async store(req, res) {
     const schema = Yup.object().shape({
-      question: Yup.string().required(),
-      answer1: Yup.string().required(),
-      answer2: Yup.string(),
-      answer3: Yup.string(),
-      answer4: Yup.string(),
-      points1: Yup.number().required(),
-      points2: Yup.number(),
-      points3: Yup.number(),
-      points4: Yup.number(),
+      answer: Yup.number().required(),
     });
 
     if (!(await schema.isValid(req.body))) {
       return res.status('400').json({ error: 'Validation failed.' });
     }
 
-    const userExists = await User.findOne({ where: { email: req.body.email } });
-
-    if (userExists) {
-      return res.status('400').json({ error: 'User already exists.' });
+    // Verify if is company user
+    const { user_company } = await User.findByPk(req.userId);
+    if (user_company) {
+      return res.status('401').json({ error: 'You don´t have questions!' });
     }
 
-    const { id, name, lastname, email, state, city, phone } = await User.create(
+    // Verify if the user already answer this question
+    const { answer_exist } = await Answer.findOne({
+      where: {
+        user_id: req.UserId,
+        question_id: req.param,
+      },
+    });
+    if (answer_exist) {
+      return res
+        .status('401')
+        .json({ error: 'You already answered this question!' });
+    }
+
+    const numAnswer = Answer.findAll({
+      where: { user_id: req.userId },
+      attributes: ['id'],
+    });
+
+    const { id, name, lastname, email, state, city, phone } = await Answer.create(
       req.body
     );
 
@@ -39,53 +50,6 @@ class QuestionController {
       phone,
     });
   }
-
-  async update(req, res) {
-    const schema = Yup.object().shape({
-      name: Yup.string(),
-      lastname: Yup.string(),
-      email: Yup.string().email(),
-      oldPassword: Yup.string().min(8),
-      password: Yup.string()
-        .min(8)
-        .when('oldPassword', (oldPassword, field) =>
-          oldPassword ? field.required() : field
-        ),
-      confirmPassword: Yup.string().when('password', (password, field) =>
-        password ? field.required().oneOf([Yup.ref('password')]) : field
-      ),
-    });
-
-    if (!(await schema.isValid(req.body))) {
-      return res.status('400').json({ error: 'Validation failed.' });
-    }
-
-    const { email, oldPassword } = req.body;
-
-    const user = await User.findByPk(req.userId);
-    if (email !== user.email) {
-      const userExists = await User.findOne({ where: { email } });
-      if (userExists) {
-        return res.status('400').json({ error: 'User already exists.' });
-      }
-    }
-    if (oldPassword && !(await user.checkPassword(oldPassword))) {
-      return res.status('401').json({ error: 'Password does not match!' });
-    }
-
-    await user.update(req.body);
-
-    const { id, name, avatar_id } = await User.findByPk(req.userId, {
-      include: [
-        {
-          model: File,
-          as: 'avatar',
-          attributes: ['id', 'path', 'url'],
-        },
-      ],
-    });
-    return res.json({ id, name, email, avatar_id });
-  }
 }
 
-export default new QuestionController();
+export default new AnswerController();

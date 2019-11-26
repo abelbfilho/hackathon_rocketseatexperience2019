@@ -13,7 +13,7 @@ class Question extends Model {
         points2: Sequelize.INTEGER,
         points3: Sequelize.INTEGER,
         points4: Sequelize.INTEGER,
-        disable: Sequelize.BOOLEAN,
+        disabled: Sequelize.BOOLEAN,
       },
       {
         sequelize,
