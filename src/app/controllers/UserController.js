@@ -11,6 +11,7 @@ class UserController {
       state: Yup.string().required(),
       city: Yup.string().required(),
       phone: Yup.string().required(), // .matches(phoneRegExp, 'Phone number is not valid'),
+      user_company: Yup.boolean(),
       email: Yup.string()
         .email()
         .required(),
@@ -29,9 +30,16 @@ class UserController {
       return res.status('400').json({ error: 'User already exists.' });
     }
 
-    const { id, name, lastname, email, state, city, phone } = await User.create(
-      req.body
-    );
+    const {
+      id,
+      name,
+      lastname,
+      email,
+      state,
+      city,
+      phone,
+      user_company,
+    } = await User.create(req.body);
 
     return res.json({
       id,
@@ -41,6 +49,7 @@ class UserController {
       state,
       city,
       phone,
+      user_company,
     });
   }
 

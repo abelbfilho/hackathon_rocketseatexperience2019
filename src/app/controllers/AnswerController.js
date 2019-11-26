@@ -36,6 +36,7 @@ class AnswerController {
       attributes: ['id'],
     });
 
+    return res.json(numAnswer);
     const { id, name, lastname, email, state, city, phone } = await Answer.create(
       req.body
     );
