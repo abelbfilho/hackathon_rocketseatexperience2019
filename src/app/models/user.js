@@ -14,6 +14,8 @@ class User extends Model {
         points: Sequelize.INTEGER,
         password: Sequelize.VIRTUAL,
         password_hash: Sequelize.STRING,
+        classification: Sequelize.INTEGER,
+        user_company: Sequelize.BOOLEAN,
       },
       {
         sequelize,
