@@ -4,7 +4,7 @@ module.exports = {
       'questions',
       [
         {
-          question: 'Como você Você se interessa mais por qual área?',
+          question: 'Você se interessa mais por qual área?',
           answer1: 'Exatas',
           answer2: 'Humanas',
           answer3: 'Ambas',
