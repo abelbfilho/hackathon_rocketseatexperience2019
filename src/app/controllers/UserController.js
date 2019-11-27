@@ -99,6 +99,10 @@ class UserController {
     });
     return res.json({ id, name, email, avatar_id });
   }
+
+  raiz(req, res) {
+    return res.json('Rackathon!');
+  }
 }
 
 export default new UserController();
