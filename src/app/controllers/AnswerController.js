@@ -72,6 +72,7 @@ class AnswerController {
     await user.update({
       classification: newClassification,
       points: newPoints,
+      last_question: question_id,
     });
 
     await Answer.create({

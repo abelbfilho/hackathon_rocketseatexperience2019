@@ -7,12 +7,15 @@ class QuestionController {
     const { page = 1 } = req.query;
 
     // Verify if is company user
-    const { user_company } = await User.findByPk(req.userId);
-    if (user_company) {
+    const user = await User.findByPk(req.userId);
+    if (user.user_company) {
       return res.status('401').json({ error: 'You don´t have questions!' });
     }
 
-    const questions = await Question.findAll({
+    const questions = await Question.findOne({
+      where: {
+        id: user.last_question + 1,
+      },
       attributes: [
         'id',
         'question',

@@ -48,6 +48,10 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: true,
       },
+      last_question: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+      },
       user_company: {
         type: Sequelize.BOOLEAN,
         allowNull: false,

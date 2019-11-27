@@ -24,8 +24,10 @@ routes.post('/files', upload.single('file'), FileController.store);
 
 routes.get('/questions', QuestionController.index);
 
+// save user's answer
 routes.post('/answers/:question_id', AnswerController.store);
-routes.get('/answers/:user_id', AnswerController.store);
+
+// routes.get('/answers/:user_id', AnswerController.store);
 // routes.put('/meetapps', MeetappController.update);
 // routes.get('/meetapps', MeetappController.index);
 
