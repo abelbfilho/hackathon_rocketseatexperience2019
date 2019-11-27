@@ -1,7 +1,7 @@
 require('dotenv/config');
 
 module.exports = {
-  use_env_variable: 'DATABASE_URL',
+  use_env_variable: process.env.DATABASE_URL,
   dialect: process.env.DB_DIALECT,
   host: process.env.DB_HOST,
   username: process.env.DB_USER,
