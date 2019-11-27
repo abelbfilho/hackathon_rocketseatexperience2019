@@ -1,5 +1,8 @@
-#Rocketseat Experience 2019
+<h1>Hackathon - Education</h1>
+<h2>Rocketseat Experience 2019</h2>
+#
 #Application: 
+Description: 
 #Authors: 
   Abel Babini Filho
   Aline Correia
@@ -8,16 +11,17 @@
 #Date: 2019/11/26
 
 
+
 #1. CREATING DOCKER:
-docker run --name database -e POSTGRES_PASSWORD=docker -p 5432:5432 -d postgres
+<blockquote>docker run --name database -e POSTGRES_PASSWORD=docker -p 5432:5432 -d postgres </blockquote>
 
 #2. LOGIN POSTGRESQL AND CREATE DATABASE NAMED database
 
 #3. RUN MIGRATIONS
-yarn sequelize db:migrate
+<blockquote>yarn sequelize db:migrate</blockquote>
 
 #4. IMPORTING SEEDS TO DATABASE
-yarn sequelize db:seed:all
+<i>yarn sequelize db:seed:all</i>
 
 >> Porta de Comunicação 8877
 
