@@ -4,13 +4,13 @@ import File from '../models/file';
 
 class UserController {
   async store(req, res) {
-    // const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
+    // const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;,
+    // phone: Yup.string().required(), // .matches(phoneRegExp, 'Phone number is not valid'),
     const schema = Yup.object().shape({
       name: Yup.string().required(),
       lastname: Yup.string().required(),
       state: Yup.string().required(),
       city: Yup.string().required(),
-      phone: Yup.string().required(), // .matches(phoneRegExp, 'Phone number is not valid'),
       user_company: Yup.boolean(),
       email: Yup.string()
         .email()
