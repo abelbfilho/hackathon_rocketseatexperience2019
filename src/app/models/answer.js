@@ -1,9 +1,11 @@
 import Sequelize, { Model } from 'sequelize';
 
-class User extends Model {
+class Answer extends Model {
   static init(sequelize) {
     super.init(
       {
+        question_id: Sequelize.INTEGER,
+        user_id: Sequelize.INTEGER,
         answer: Sequelize.INTEGER,
         points: Sequelize.INTEGER,
       },
@@ -16,9 +18,12 @@ class User extends Model {
   }
 
   static associate(models) {
-    this.belongsTo(models.File, { foreignKey: 'user_id', as: 'user' });
-    this.belongsTo(models.File, { foreignKey: 'question_id', as: 'question' });
+    this.belongsTo(models.User, { foreignKey: 'user_id', as: 'user' });
+    this.belongsTo(models.Question, {
+      foreignKey: 'question_id',
+      as: 'question',
+    });
   }
 }
 
-export default User;
+export default Answer;

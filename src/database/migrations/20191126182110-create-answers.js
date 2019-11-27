@@ -14,8 +14,8 @@ module.exports = {
           key: 'id',
         },
         onUpdate: 'CASCADE',
-        onDelete: 'SET NULL',
-        allowNull: true,
+        onDelete: 'CASCADE',
+        allowNull: false,
       },
       question_id: {
         type: Sequelize.INTEGER,
@@ -24,8 +24,8 @@ module.exports = {
           key: 'id',
         },
         onUpdate: 'CASCADE',
-        onDelete: 'SET NULL',
-        allowNull: true,
+        onDelete: 'CASCADE',
+        allowNull: false,
       },
       answer: {
         type: Sequelize.INTEGER,
