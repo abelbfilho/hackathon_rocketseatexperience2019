@@ -25,4 +25,16 @@ Description:
 
 >> Porta de Comunicação 8877
 
+#5. CRIAR USUARIO VIA INSOMNIA
+Rota: /users
+{
+	"name": "Abel",
+	"lastname": "Filho",
+	"email": "abel.filho@babini.com.br",
+	"state": "SP",
+	"city": "Itatiba",
+	"phone": "+551199999999",
+	"password": "12345678"
+}
+
 
